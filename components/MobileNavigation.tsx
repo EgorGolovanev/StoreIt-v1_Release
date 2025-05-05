@@ -64,7 +64,7 @@ const MobileNavigation = ({
                 height={44}
                 className="header-user-avatar"
               />
-              <div className="sm:hidden lg:block">
+              <div className="block">
                 <p className="subtitle-2 capitalize">{fullName}</p>
                 <p className="caption">{email}</p>
               </div>
@@ -79,7 +79,7 @@ const MobileNavigation = ({
                   <li
                     className={cn(
                       "mobile-nav-item",
-                      pathname === url && "shad-active",
+                      pathname === url && "shad-active"
                     )}
                   >
                     <Image
@@ -89,7 +89,7 @@ const MobileNavigation = ({
                       height={24}
                       className={cn(
                         "nav-icon",
-                        pathname === url && "nav-icon-active",
+                        pathname === url && "nav-icon-active"
                       )}
                     />
                     <p>{name}</p>
