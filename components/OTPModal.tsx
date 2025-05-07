@@ -37,12 +37,12 @@ const OtpModal = ({
     e.preventDefault();
     setIsLoading(true);
 
-    console.log({ accountId, password });
+    // console.log({ accountId, password });
 
     try {
       const sessionId = await verifySecret({ accountId, password });
 
-      console.log({ sessionId });
+      // console.log({ sessionId });
 
       if (sessionId) router.push("/");
     } catch (error) {
@@ -72,7 +72,7 @@ const OtpModal = ({
             />
           </AlertDialogTitle>
           <AlertDialogDescription className="subtitle-2 text-center text-light-100">
-            We&apos;ve sent a code to{" "}
+            We've sent a code to{" "}
             <span className="pl-1 text-brand">{email}</span>
           </AlertDialogDescription>
         </AlertDialogHeader>
@@ -108,7 +108,7 @@ const OtpModal = ({
             </AlertDialogAction>
 
             <div className="subtitle-2 mt-2 text-center text-light-100">
-              Didn&apos;t get a code?
+              Didn't get a code?
               <Button
                 type="button"
                 variant="link"
