@@ -9,3 +9,8 @@
     NEXT_APPWRITE_KEY=""
 
 Заполнить
+
+TODO:
+1. Не кликабельное лого в мобильной навигации (Sidebar.tsx)
+2. Добавить Landing Page (шаблон из первой версии с tailwind.com?)
+3. 

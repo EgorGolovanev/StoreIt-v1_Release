@@ -44,6 +44,7 @@ const MobileNavigation = ({
         height={52}
         className="h-auto"
       />
+      <Link href="/"></Link>
 
       <Sheet open={open} onOpenChange={setOpen}>
         <SheetTrigger>
