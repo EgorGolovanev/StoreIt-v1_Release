@@ -10,7 +10,7 @@ import Image from "next/image";
 import React, { useState } from "react";
 import { usePathname } from "next/navigation";
 import { Separator } from "@radix-ui/react-separator";
-import { navItems } from "@/constants";
+import { avatarPlaceholderUrl, navItems } from "@/constants";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
@@ -21,7 +21,6 @@ interface Props {
   $id: string;
   accountId: string;
   fullName: string;
-  avatar: string;
   email: string;
 }
 
@@ -29,7 +28,6 @@ const MobileNavigation = ({
   $id: ownerId,
   accountId,
   fullName,
-  avatar,
   email,
 }: Props) => {
   const [open, setOpen] = useState(false);
@@ -59,7 +57,7 @@ const MobileNavigation = ({
           <SheetTitle>
             <div className="header-user">
               <Image
-                src={avatar}
+                src={avatarPlaceholderUrl}
                 alt="avatar"
                 width={44}
                 height={44}

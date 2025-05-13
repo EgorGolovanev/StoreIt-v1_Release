@@ -2,17 +2,19 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { navItems } from "@/constants";
+import { avatarPlaceholderUrl, navItems } from "@/constants";
 import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
 
 interface Props {
   fullName: string;
-  avatar: string;
+  // avatar: string; // BACKUP
   email: string;
 }
 
-const Sidebar = ({ fullName, avatar, email }: Props) => {
+// BACKUP
+// const Sidebar = ({ fullName, avatar, email }: Props) => { // BACKUP
+const Sidebar = ({ fullName, email }: Props) => {
   const pathname = usePathname();
 
   return (
@@ -72,7 +74,7 @@ const Sidebar = ({ fullName, avatar, email }: Props) => {
 
       <div className="sidebar-user-info">
         <Image
-          src={avatar}
+          src={avatarPlaceholderUrl}
           alt="Avatar"
           width={44}
           height={44}
