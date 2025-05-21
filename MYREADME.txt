@@ -8,7 +8,7 @@
     NEXT_PUBLIC_APPWRITE_BUCKET=""
     NEXT_APPWRITE_KEY=""
 
-Заполнить
+Заполнить !
 
 Известные проблемы:
 1. (ActionDrowdown.tsx) При изменении файла и повторном открытии
