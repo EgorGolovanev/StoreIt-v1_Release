@@ -1,5 +1,7 @@
 /* eslint-disable no-unused-vars */
 
+// Файл, содержащий интерфейсы свойств для использумыех компонентов
+
 declare type FileType = "document" | "image" | "video" | "audio" | "other";
 
 declare interface ActionType {
@@ -30,6 +32,7 @@ declare interface RenameFileProps {
   name: string;
   extension: string;
   path: string;
+  bucketFileId: string;
 }
 declare interface UpdateFileUsersProps {
   fileId: string;

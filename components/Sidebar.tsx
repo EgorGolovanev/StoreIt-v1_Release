@@ -8,12 +8,9 @@ import { cn } from "@/lib/utils";
 
 interface Props {
   fullName: string;
-  // avatar: string; // BACKUP
   email: string;
 }
 
-// BACKUP
-// const Sidebar = ({ fullName, avatar, email }: Props) => { // BACKUP
 const Sidebar = ({ fullName, email }: Props) => {
   const pathname = usePathname();
 
@@ -85,6 +82,11 @@ const Sidebar = ({ fullName, email }: Props) => {
           <p className="caption">{email}</p>
         </div>
       </div>
+      <span className="text-sm text-gray-400 flex justify-center">
+        <Link href="/privacy" className="hover:underline">
+          Privacy Policy
+        </Link>
+      </span>
     </aside>
   );
 };

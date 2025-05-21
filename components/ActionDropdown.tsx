@@ -46,7 +46,6 @@ const ActionDropdown = ({ file }: { file: Models.Document }) => {
     setIsDropdownOpen(false);
     setAction(null);
     setName(file.name);
-    //   setEmails([]);
   };
 
   const handleAction = async () => {
@@ -56,7 +55,13 @@ const ActionDropdown = ({ file }: { file: Models.Document }) => {
 
     const actions = {
       rename: () =>
-        renameFile({ fileId: file.$id, name, extension: file.extension, path }),
+        renameFile({
+          fileId: file.$id,
+          name,
+          extension: file.extension,
+          path,
+          bucketFileId: file.bucketFileId,
+        }),
       share: () => updateFileUsers({ fileId: file.$id, emails, path }),
       delete: () =>
         deleteFile({ fileId: file.$id, bucketFileId: file.bucketFileId, path }),
@@ -163,7 +168,7 @@ const ActionDropdown = ({ file }: { file: Models.Document }) => {
 
                 if (
                   ["rename", "share", "delete", "details"].includes(
-                    actionItem.value,
+                    actionItem.value
                   )
                 ) {
                   setIsModalOpen(true);
@@ -204,4 +209,5 @@ const ActionDropdown = ({ file }: { file: Models.Document }) => {
     </Dialog>
   );
 };
+
 export default ActionDropdown;

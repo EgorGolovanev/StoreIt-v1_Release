@@ -10,6 +10,7 @@ import { Models } from "node-appwrite";
 import Thumbnail from "@/components/Thumbnail";
 import FormattedDateTime from "@/components/FormattedDateTime";
 import { useDebounce } from "use-debounce";
+
 const Search = () => {
   const [query, setQuery] = useState("");
   const searchParams = useSearchParams();
@@ -47,7 +48,7 @@ const Search = () => {
     setResults([]);
 
     router.push(
-      `/${file.type === "video" || file.type === "audio" ? "media" : file.type + "s"}?query=${query}`,
+      `/${file.type === "video" || file.type === "audio" ? "media" : file.type + "s"}?query=${query}`
     );
   };
 

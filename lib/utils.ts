@@ -1,14 +1,19 @@
 import { clsx, type ClassValue } from "clsx";
 import { twMerge } from "tailwind-merge";
 
+// Функция для объединения классов, основанная на пакете clsx
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
+
+// Функция для сериализации и десериализации объектов, основанная на JSON.stringify и JSON.parse (для оптимизации передачи пакетов через сервер)
 export const parseStringify = (value: unknown) =>
   JSON.parse(JSON.stringify(value));
 
+// Функция для преобразования объекта File в URL-адрес, который можно использовать для отображения файла
 export const convertFileToUrl = (file: File) => URL.createObjectURL(file);
 
+// Функция для преобразования размера файла в удобочитаемый формат
 export const convertFileSize = (sizeInBytes: number, digits?: number) => {
   if (sizeInBytes < 1024) {
     return sizeInBytes + " Bytes"; // Less than 1 KB, show in Bytes
@@ -24,12 +29,14 @@ export const convertFileSize = (sizeInBytes: number, digits?: number) => {
   }
 };
 
+// Функция для расчета процента использования места на диске
 export const calculatePercentage = (sizeInBytes: number) => {
   const totalSizeInBytes = 2 * 1024 * 1024 * 1024; // 2GB in bytes
   const percentage = (sizeInBytes / totalSizeInBytes) * 100;
   return Number(percentage.toFixed(2));
 };
 
+// Функция для определения типа файла на основе его расширения
 export const getFileType = (fileName: string) => {
   const extension = fileName.split(".").pop()?.toLowerCase();
 
@@ -75,20 +82,21 @@ export const getFileType = (fileName: string) => {
   return { type: "other", extension };
 };
 
+// Функция для форматирования даты и времени на основе ISO-строки
 export const formatDateTime = (isoString: string | null | undefined) => {
   if (!isoString) return "—";
 
   const date = new Date(isoString);
 
-  // Get hours and adjust for 12-hour format
+  // Получить часы и привести их к 12-часовому формату
   let hours = date.getHours();
   const minutes = date.getMinutes();
   const period = hours >= 12 ? "pm" : "am";
 
-  // Convert hours to 12-hour format
+  // Часы в 12-часовом формате
   hours = hours % 12 || 12;
 
-  // Format the time and date parts
+  // Форматирование времени и даты
   const time = `${hours}:${minutes.toString().padStart(2, "0")}${period}`;
   const day = date.getDate();
   const monthNames = [
@@ -110,9 +118,10 @@ export const formatDateTime = (isoString: string | null | undefined) => {
   return `${time}, ${day} ${month}`;
 };
 
+// Функция для получения иконки файла на основе его расширения
 export const getFileIcon = (
   extension: string | undefined,
-  type: FileType | string,
+  type: FileType | string
 ) => {
   switch (extension) {
     // Document
@@ -173,16 +182,19 @@ export const getFileIcon = (
 };
 
 // APPWRITE URL UTILS
-// Construct appwrite file URL - https://appwrite.io/docs/apis/rest#images
+// Построение URL для просмотра файла (thumbnail)
 export const constructFileUrl = (bucketFileId: string) => {
   return `${process.env.NEXT_PUBLIC_APPWRITE_ENDPOINT}/storage/buckets/${process.env.NEXT_PUBLIC_APPWRITE_BUCKET}/files/${bucketFileId}/view?project=${process.env.NEXT_PUBLIC_APPWRITE_PROJECT}`;
 };
 
+// Построение URL для скачивания файла
+// (Временная метка для того, чтобы каждая новая загрузка была уникальной и не кэшировалась)
 export const constructDownloadUrl = (bucketFileId: string) => {
-  return `${process.env.NEXT_PUBLIC_APPWRITE_ENDPOINT}/storage/buckets/${process.env.NEXT_PUBLIC_APPWRITE_BUCKET}/files/${bucketFileId}/download?project=${process.env.NEXT_PUBLIC_APPWRITE_PROJECT}`;
+  return `${process.env.NEXT_PUBLIC_APPWRITE_ENDPOINT}/storage/buckets/${process.env.NEXT_PUBLIC_APPWRITE_BUCKET}/files/${bucketFileId}/download?project=${process.env.NEXT_PUBLIC_APPWRITE_PROJECT}&t=${Date.now()}`;
 };
 
 // DASHBOARD UTILS
+// Функция для получения информации о типа на основе текущего названия типа
 export const getUsageSummary = (totalSpace: any) => {
   return [
     {
@@ -219,6 +231,7 @@ export const getUsageSummary = (totalSpace: any) => {
   ];
 };
 
+// Функция для получения параметров типа файла на основе текущего названия типа
 export const getFileTypesParams = (type: string) => {
   switch (type) {
     case "documents":

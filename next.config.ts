@@ -16,10 +16,6 @@ const nextConfig: NextConfig = {
     remotePatterns: [
       {
         protocol: "https",
-        hostname: "cdn.pixabay.com",
-      },
-      {
-        protocol: "https",
         hostname: "img.freepik.com",
       },
       {
@@ -32,6 +28,7 @@ const nextConfig: NextConfig = {
       },
     ],
   },
+  productionBrowserSourceMaps: true,
 };
 
 export default nextConfig;

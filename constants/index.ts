@@ -1,8 +1,11 @@
+// Файл для хранения констант и общих текстовых данных приложения
+
+// Массив имён страниц и их иконок в меню навигации
 export const navItems = [
   {
     name: "Dashboard",
     icon: "/assets/icons/dashboard.svg",
-    url: "/",
+    url: "/dashboard",
   },
   {
     name: "Documents",
@@ -26,6 +29,7 @@ export const navItems = [
   },
 ];
 
+// Массив имён контекстных действий и их иконок
 export const actionsDropdownItems = [
   {
     label: "Rename",
@@ -54,13 +58,14 @@ export const actionsDropdownItems = [
   },
 ];
 
+// Массив типов сортировки и их значений в формате запроса к серверу
 export const sortTypes = [
   {
     label: "Date created (newest)",
     value: "$createdAt-desc",
   },
   {
-    label: "Created Date (oldest)",
+    label: "Date created (oldest)",
     value: "$createdAt-asc",
   },
   {
@@ -81,7 +86,9 @@ export const sortTypes = [
   },
 ];
 
+// Адрес пустой аватарки пользователя
 export const avatarPlaceholderUrl =
   "https://img.freepik.com/free-psd/3d-illustration-person-with-sunglasses_23-2149436188.jpg";
 
+// Максимальный размер файла в байтах
 export const MAX_FILE_SIZE = 50 * 1024 * 1024; // 50MB

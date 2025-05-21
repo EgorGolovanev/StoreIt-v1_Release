@@ -122,27 +122,40 @@ export const renameFile = async ({
   name,
   extension,
   path,
+  bucketFileId,
 }: RenameFileProps) => {
-  const { databases } = await createAdminClient();
+  const { databases, storage } = await createAdminClient();
 
   try {
     const newName = `${name}.${extension}`;
+
+    // 1. Переименовываем файл в bucket (Storage)
+    const newFileName = newName;
+
+    await storage.updateFile(
+      process.env.NEXT_PUBLIC_APPWRITE_BUCKET!,
+      bucketFileId,
+      newFileName
+    );
+
+    // 2. Обновляем информацию о файле в базе данных (Databases)
     const updatedFile = await databases.updateDocument(
-      appwriteConfig.databaseId,
-      appwriteConfig.filesCollectionId,
+      process.env.NEXT_PUBLIC_APPWRITE_DATABASE!,
+      process.env.NEXT_PUBLIC_APPWRITE_FILES_COLLECTION!,
       fileId,
       {
-        name: newName,
+        name: newFileName,
       }
     );
 
-    revalidatePath(path);
+    revalidatePath(path); // Обновление кэша страницы
     return parseStringify(updatedFile);
-  } catch (error) {
-    handleError(error, "Failed to rename file");
+  } catch (error: any) {
+    console.error("Failed to rename file:", error);
+    throw new Error("Failed to rename file: " + error.message);
   }
 };
-
+// --------------------------
 export const updateFileUsers = async ({
   fileId,
   emails,
@@ -151,6 +164,7 @@ export const updateFileUsers = async ({
   const { databases } = await createAdminClient();
 
   try {
+    // Обновление поля users у файла в базе данных
     const updatedFile = await databases.updateDocument(
       appwriteConfig.databaseId,
       appwriteConfig.filesCollectionId,
@@ -163,7 +177,7 @@ export const updateFileUsers = async ({
     revalidatePath(path);
     return parseStringify(updatedFile);
   } catch (error) {
-    handleError(error, "Failed to rename file");
+    handleError(error, "Failed to share file with users");
   }
 };
 
